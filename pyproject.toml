@@ -5,39 +5,49 @@ build-backend = "hatchling.build"
 [project]
 name = "gcp-mcp-server"
 version = "0.1.0"
-description = "MCP server for Google Cloud Platform API integration"
+description = "MCP server for Google Cloud Platform"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 authors = [
-    { name = "asklokesh", email = "asklokesh@example.com" }
+    { name = "asklokesh", email = "49921737+asklokesh@users.noreply.github.com" }
 ]
 dependencies = [
-    "google-cloud-compute>=1.14.0",
-    "google-cloud-storage>=2.10.0",
-    "google-cloud-bigquery>=3.11.0",
-    "google-cloud-functions>=1.13.0",
-    "google-cloud-container>=2.26.0",
-    "google-cloud-run>=0.9.0",
-    "google-cloud-pubsub>=2.18.0",
-    "google-cloud-logging>=3.5.0",
-    "google-cloud-monitoring>=2.15.0",
-    "google-cloud-aiplatform>=1.35.0",
-    "google-auth>=2.23.0",
-    "google-auth-httplib2>=0.1.0",
-    "httpx>=0.24.0",
-    "pydantic>=2.0",
-    "pydantic-settings>=2.0",
-    "python-dotenv>=1.0.0"
+    "mcp>=1.27,<2",
+    "pydantic>=2.12",
+    "pydantic-settings>=2.5.2",
+    "python-dotenv>=1.0.0",
+    "anyio>=4.9",
+    "google-auth>=2.36",
+    "google-cloud-storage>=2.19",
+    "google-cloud-compute>=1.23",
+    "google-cloud-bigquery>=3.27",
+    "google-cloud-pubsub>=2.27",
+    "google-cloud-logging>=3.12",
+    "google-cloud-resource-manager>=1.14",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=7.0",
-    "pytest-asyncio>=0.21.0",
-    "pytest-cov>=4.0",
-    "pytest-mock>=3.0",
-    "ruff>=0.1.0"
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.8",
 ]
 
 [project.scripts]
-gcp-mcp = "gcp_mcp.server:main"
+gcp-mcp = "gcp_mcp:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gcp_mcp"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501"]

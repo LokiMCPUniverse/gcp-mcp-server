@@ -1,0 +1,12 @@
+mcp>=1.27,<2
+pydantic>=2.12
+pydantic-settings>=2.5.2
+python-dotenv>=1.0.0
+anyio>=4.9
+google-auth>=2.36
+google-cloud-storage>=2.19
+google-cloud-compute>=1.23
+google-cloud-bigquery>=3.27
+google-cloud-pubsub>=2.27
+google-cloud-logging>=3.12
+google-cloud-resource-manager>=1.14
